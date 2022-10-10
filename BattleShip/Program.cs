@@ -7,9 +7,8 @@ namespace BattleShip
 
         public static void Main(string[] args)
         {
-            Board board = new(10, 10);
-            Display display = new(board);
-            display.PrintBoard();
+            Battleship battleship = new();
+            battleship.Run();
         }
     }
 }

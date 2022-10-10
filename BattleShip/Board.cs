@@ -8,7 +8,7 @@ namespace BattleShip
 {
     public class Board
     {
-        public int[,] myBoard { get; set; }
+        public int[,] myBoard;
         public int nRows;
         public int nCols;
 

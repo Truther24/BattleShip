@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    internal class Input
+    public class Input
     {
+        
     }
 }

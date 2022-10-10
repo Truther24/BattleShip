@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    internal class Game
+    public class Game
     {
+        public Board board1;
+        public Board board2;
+
+        public Game()
+        {
+            board1 = new(10, 10);
+            board2 = new(10, 10);
+        }
     }
 }

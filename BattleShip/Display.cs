@@ -9,39 +9,69 @@ using Console = Colorful.Console;
 namespace BattleShip
 {
     public class Display
-    {
-        private Board board;
-        public Display(Board board)
+    { 
+        public void PrintBoard(Board board1, Board board2)
         {
-            this.board = board;
-        }
+            // Cadet Blue color values
+            int rColor = 95;
+            int gColor = 158;
+            int bColor = 160;
 
-       
-
-        public void PrintBoard()
-        {
             Console.WriteLine();
             Console.Write("    ");
-            for (int i = 0; i < board.nRows; i++)
+
+            for (int i = 0; i < board1.nRows; i++)
             {
                 Console.Write($"{(char)('A'+i)}  ", Color.Wheat);
             }
 
-            for (int row = 0; row < board.nRows; row++)
+            Console.Write("   " + "|" + "       ", Color.Red);
+
+            for (int i = 0; i < board2.nRows; i++)
+            {
+                Console.Write($"{(char)('A' + i)}  ", Color.Wheat);
+            } // First row finish
+
+            for (int row1 = 0, row2 = 0; row1 < board1.nRows && row2 < board2.nRows; row1++, row2++)
             {
                 Console.WriteLine();
-                Console.Write(row < 9 ? $" {row + 1} " : row + 1 + " ", Color.Wheat); ;
+                Console.Write(row1 < 9 ? $" {row1 + 1} " : row1 + 1 + " ", Color.Wheat);
 
-                for (int col = 0; col < board.nCols; col++)
+                for (int col = 0; col < board1.nCols; col++)
                 {
-                    if (board.myBoard[row,col] == 0)
+
+                    bColor += 4;
+                    if (bColor > 220)
+                    {
+                        bColor = 160;
+                    }
+                    
+                    if (board1.myBoard[row1,col] == 0)
                     {
                         
-                        Console.Write(" ~ ", Color.CadetBlue);
+                        Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
+                    }
+                }
+                Console.Write("    " + "|" + "   ", Color.Red);
+                Console.Write(row2 < 9 ? $" {row2 + 1} " : row2 + 1 + " ", Color.Wheat);
+
+                for (int col = 0; col < board2.nCols; col++)
+                {
+                    bColor += 4;
+                    if (bColor > 220)
+                    {
+                        bColor = 160;
+                    }
+
+                    if (board2.myBoard[row2, col] == 0)
+                    {
+
+                        Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
                     }
                 }
 
             }
+            Console.WriteLine();
         }
     }
 }

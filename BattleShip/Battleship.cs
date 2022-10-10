@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    internal class Battleship
+
+    public class Battleship
     {
+        private Display display;
+        private Input input;
+
+        public Battleship()
+        {
+            display = new();
+            input = new();
+        }
+        public void Run()
+        {
+            Game game = new();
+            display.PrintBoard(game.board1, game.board2);
+        }
     }
 }
