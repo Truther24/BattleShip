@@ -11,11 +11,13 @@ namespace BattleShip
     {
         private Display display;
         private Input input;
+        private BoardFactory boardFactory;
 
         public Battleship()
         {
             display = new();
             input = new();
+            boardFactory = new();
         }
         public void Run()
         {
@@ -29,33 +31,10 @@ namespace BattleShip
             Game game = new();
             display.PrintBoard(game.board1, game.board2);
 
-            for (int i = 0; i < player1.ships.Count; i++)
-            {
+            boardFactory.ManualPlacement(player1, game.board1, input, display);
 
-                (int,int) shipCoordinates = input.GetCoordinates(display, player1, i);
-                int xCoordinate = shipCoordinates.Item1;
-                int yCoordinate = shipCoordinates.Item2;
-                shipCoordinates = (xCoordinate, yCoordinate);
+            boardFactory.ManualPlacement(player2, game.board2, input, display);
 
-                player1.ships[i].PositionOfShip.Add(new Square(shipCoordinates, Square.SquareStatus.ship));
-
-                game.board1.myBoard[xCoordinate, yCoordinate]
-                    = new Square(shipCoordinates, Square.SquareStatus.ship);
-            }
-
-            for (int i = 0; i < player2.ships.Count; i++)
-            {
-
-                (int, int) shipCoordinates = input.GetCoordinates(display, player2, i);
-                int xCoordinate = shipCoordinates.Item1;
-                int yCoordinate = shipCoordinates.Item2;
-                shipCoordinates = (xCoordinate, yCoordinate);
-                player2.ships[i].PositionOfShip.Add
-                    (new Square(shipCoordinates, Square.SquareStatus.ship));
-
-                game.board2.myBoard[xCoordinate, yCoordinate]
-                    = new Square(shipCoordinates, Square.SquareStatus.ship);
-            }
             display.PrintBoard(game.board1, game.board2);
 
 

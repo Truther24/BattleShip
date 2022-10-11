@@ -10,6 +10,11 @@ namespace BattleShip
 {
     public class Display
     { 
+        public void NoFreeSpaces()
+        {
+            System.Console.WriteLine("You couldn't place your ship " +
+                "because there were no free spaces up");
+        }
         public void IncorrectCoordinatesMessage()
         {
             System.Console.WriteLine("I'm sorry, your coordinates aren't valid!");
@@ -63,12 +68,12 @@ namespace BattleShip
                         bColor = 160;
                     }
                     
-                    if (board1.myBoard[row1,col] == null)
+                    if (board1.ocean[row1,col] == null)
                     {
                         
                         Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
                     }
-                    else if (board1.myBoard[row1, col].status == Square.SquareStatus.ship)
+                    else if (board1.ocean[row1, col].status == Square.SquareStatus.ship)
                     {
 
                         Console.Write(" S ", Color.Red);
@@ -85,12 +90,12 @@ namespace BattleShip
                         bColor = 160;
                     }
 
-                    if (board2.myBoard[row2, col] == null)
+                    if (board2.ocean[row2, col] == null)
                     {
 
                         Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
                     }
-                    else if (board2.myBoard[row1, col].status == Square.SquareStatus.ship)
+                    else if (board2.ocean[row1, col].status == Square.SquareStatus.ship)
                     {
 
                         Console.Write(" S ", Color.Red);
