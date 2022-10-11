@@ -10,6 +10,14 @@ namespace BattleShip
 {
     public class Display
     { 
+        public void IncorrectCoordinatesMessage()
+        {
+            System.Console.WriteLine("I'm sorry, your coordinates aren't valid!");
+        }
+        public void PlaceShipsMessage(Player player, Ship ship)
+        {
+            System.Console.WriteLine($"Please place your {ship.type} of length {ship.length}, {player.name}");
+        }
         public void InputForPlayer(int playerCount)
         {
             System.Console.WriteLine($"Please input the name for player {playerCount}");
@@ -60,6 +68,11 @@ namespace BattleShip
                         
                         Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
                     }
+                    else if (board1.myBoard[row1, col].status == Square.SquareStatus.ship)
+                    {
+
+                        Console.Write(" S ", Color.Red);
+                    }
                 }
                 Console.Write("    " + "|" + "   ", Color.Red);
                 Console.Write(row2 < 9 ? $" {row2 + 1} " : row2 + 1 + " ", Color.Wheat);
@@ -76,6 +89,11 @@ namespace BattleShip
                     {
 
                         Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
+                    }
+                    else if (board2.myBoard[row1, col].status == Square.SquareStatus.ship)
+                    {
+
+                        Console.Write(" S ", Color.Red);
                     }
                 }
 

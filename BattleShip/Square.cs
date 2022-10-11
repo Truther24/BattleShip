@@ -8,10 +8,18 @@ namespace BattleShip
 {
     public class Square
     {
+        public SquareStatus status;
+
         public (int, int) Position;
-        private enum SquareStatus
+        public enum SquareStatus
         {
             empty, ship, hit, missed
+        }
+        public Square((int,int) position, SquareStatus status)
+        {
+            this.Position = position;
+            this.status = status;   
+            
         }
     }
 }
