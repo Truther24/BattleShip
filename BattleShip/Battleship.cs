@@ -19,6 +19,14 @@ namespace BattleShip
         }
         public void Run()
         {
+            display.Greetings();
+            Player player1 = new(input.GetNameForPlayer(display));
+            Player player2 = new(input.GetNameForPlayer(display));
+            foreach (var ship in player1.ships)
+            {
+                Console.WriteLine(ship.type);
+            }
+
             Game game = new();
             display.PrintBoard(game.board1, game.board2);
         }

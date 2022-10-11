@@ -10,6 +10,15 @@ namespace BattleShip
 {
     public class Display
     { 
+        public void InputForPlayer(int playerCount)
+        {
+            System.Console.WriteLine($"Please input the name for player {playerCount}");
+        }
+        public void Greetings()
+        {
+            System.Console.WriteLine("Hello! Welcome to BattleShip");
+        }
+
         public void PrintBoard(Board board1, Board board2)
         {
             // Cadet Blue color values
@@ -46,7 +55,7 @@ namespace BattleShip
                         bColor = 160;
                     }
                     
-                    if (board1.myBoard[row1,col] == 0)
+                    if (board1.myBoard[row1,col] == null)
                     {
                         
                         Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
@@ -63,7 +72,7 @@ namespace BattleShip
                         bColor = 160;
                     }
 
-                    if (board2.myBoard[row2, col] == 0)
+                    if (board2.myBoard[row2, col] == null)
                     {
 
                         Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));

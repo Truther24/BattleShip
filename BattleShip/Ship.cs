@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    internal class Ship
+    public class Ship
     {
+        public object type;
+
+       
+
+
+        public enum ShipType 
+        {
+            Carrier , Cruiser, Battleship, Submarine, Destroyer
+        }
+
+        public Ship(int indexOfEnum)
+        {
+            var values = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
+            this.type = values[indexOfEnum];
+            
+        }
     }
 }

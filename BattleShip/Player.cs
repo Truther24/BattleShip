@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    internal class Player
+    public class Player
     {
+        public string name;
+        public List<Ship> ships;
+
+        public Player(string name)
+        {
+            this.name = name;
+            ships = new();
+            for (int i = 0; i < 5; i++)
+            {
+                ships.Add(new Ship(i));
+            }
+            
+        }
     }
 }

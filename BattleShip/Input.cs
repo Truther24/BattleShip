@@ -8,6 +8,15 @@ namespace BattleShip
 {
     public class Input
     {
-        
+        public int playerCount;
+        public string GetNameForPlayer(Display display)
+        {
+            playerCount++;
+            display.InputForPlayer(playerCount);
+            string playerName = Console.ReadLine();
+
+            return playerName;
+            
+        }
     }
 }

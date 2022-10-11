@@ -8,7 +8,7 @@ namespace BattleShip
 {
     public class Board
     {
-        public int[,] myBoard;
+        public Square[,] myBoard;
         public int nRows;
         public int nCols;
 
@@ -16,7 +16,7 @@ namespace BattleShip
         {
             nRows = rows;
             nCols = cols;
-            myBoard = new int[rows, cols];
+            myBoard = new Square[rows, cols];
         }
     }
 }
