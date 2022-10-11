@@ -14,14 +14,12 @@ namespace BattleShip
             {
 
                 (int, int) shipCoordinates = input.GetCoordinates(display, player, i);
-                int xCoordinate = shipCoordinates.Item1;
-                int yCoordinate = shipCoordinates.Item2;
 
                 if(board.IsPlacementOk(shipCoordinates, player, i))
                 {
                 player.ships[i].PositionOfShip.Add(new Square(shipCoordinates, Square.SquareStatus.ship));
 
-                board.ocean[xCoordinate, yCoordinate]
+                board.ocean[shipCoordinates.Item1, shipCoordinates.Item2]
                     = new Square(shipCoordinates, Square.SquareStatus.ship);
                 }
                 else
