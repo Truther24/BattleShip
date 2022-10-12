@@ -10,10 +10,24 @@ namespace BattleShip
 {
     public class Display
     { 
+        public void WrongDirectionMessage()
+        {
+            System.Console.WriteLine("The direction you inputted isn't correct! Choose another one");
+        }
+        public void PlaceYourShipInDirection
+            ((bool canPlaceUp, bool canPlaceDown, bool canPlaceLeft, bool canPlaceRight) canPlaceInDirection)
+        {
+            System.Console.WriteLine("You can place your ship starting with the chosen coordinate" +
+                "in the following directions: ");
+            if (canPlaceInDirection.canPlaceUp) { System.Console.WriteLine("Up: Write U"); }
+            if (canPlaceInDirection.canPlaceDown) { System.Console.WriteLine("Down: Write D"); }
+            if (canPlaceInDirection.canPlaceLeft) { System.Console.WriteLine("Left: Write L"); }
+            if (canPlaceInDirection.canPlaceRight) { System.Console.WriteLine("Right: Write R"); }
+        }
         public void NoFreeSpaces()
         {
             System.Console.WriteLine("You couldn't place your ship " +
-                "because there were no free spaces up");
+                "because the space was occupied or there were no spaces available to place the ship in any direction!");
         }
         public void IncorrectCoordinatesMessage()
         {

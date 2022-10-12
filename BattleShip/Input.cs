@@ -59,5 +59,17 @@ namespace BattleShip
 
 
         }
+
+        public string ChooseDirectionToPlaceShip(Display display)
+        {
+            string[] possibleDirections = new string[] { "U", "D", "L", "R" };
+            string direction = Console.ReadLine();
+            foreach (var possibleDirection in possibleDirections)
+            {
+                if (direction.ToUpper() == possibleDirection) { return direction.ToUpper(); }
+            }
+            display.WrongDirectionMessage();
+            return ChooseDirectionToPlaceShip(display);
+        }
     }
 }

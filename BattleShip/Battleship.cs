@@ -31,9 +31,9 @@ namespace BattleShip
             Game game = new();
             display.PrintBoard(game.board1, game.board2);
 
-            boardFactory.ManualPlacement(player1, game.board1, input, display);
+            boardFactory.ManualPlacement(game, player1, game.board1, input, display);
 
-            boardFactory.ManualPlacement(player2, game.board2, input, display);
+            /*boardFactory.ManualPlacement(player2, game.board2, input, display);*/
 
             display.PrintBoard(game.board1, game.board2);
 
