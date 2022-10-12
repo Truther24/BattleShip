@@ -31,12 +31,13 @@ namespace BattleShip
             Game game = new();
             display.PrintBoard(game.board1, game.board2);
 
-            boardFactory.ManualPlacement(game, player1, game.board1, input, display);
+            boardFactory.ManualPlacement(0, game, player1, game.board1, input, display);
 
-            /*boardFactory.ManualPlacement(player2, game.board2, input, display);*/
+            boardFactory.ManualPlacement(0, game, player2, game.board2, input, display);
 
-            display.PrintBoard(game.board1, game.board2);
+            game.GameBegins(player1, player2, display, input);
 
+            
 
         }
     }

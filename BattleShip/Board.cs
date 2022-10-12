@@ -37,7 +37,8 @@ namespace BattleShip
             {
                 if (!(x - i < 0))
                 {
-                    if (ocean[x - i, y] == null) { countFreeSpacesUp++; }
+                    if (ocean[x - i, y] == null) 
+                    { countFreeSpacesUp++; }
                 }
 
                 if (!(x + i > nRows - 1))
@@ -54,10 +55,10 @@ namespace BattleShip
                 {
                     if (ocean[x, y + i] == null) { countFreeSpacesRight++; }
                 }
-                if (countFreeSpacesUp + 1 > player.ships[shipIndex].length) { canPlaceUp = true; }
-                if (countFreeSpacesDown + 1 > player.ships[shipIndex].length) { canPlaceDown = true; }
-                if (countFreeSpacesLeft + 1 > player.ships[shipIndex].length) { canPlaceLeft = true; }
-                if (countFreeSpacesRight + 1 > player.ships[shipIndex].length) { canPlaceRight = true; }
+                if (countFreeSpacesUp + 1> player.ships[shipIndex].length - 1) { canPlaceUp = true; }
+                if (countFreeSpacesDown + 1> player.ships[shipIndex].length - 1) { canPlaceDown = true; }
+                if (countFreeSpacesLeft + 1 > player.ships[shipIndex].length - 1) { canPlaceLeft = true; }
+                if (countFreeSpacesRight + 1 > player.ships[shipIndex].length - 1) { canPlaceRight = true; }
             }
             return (canPlaceUp, canPlaceDown, canPlaceLeft, canPlaceRight);
         }
@@ -78,7 +79,7 @@ namespace BattleShip
 
             if (direction == "U")
             {
-                for (int modifier = 0; modifier < player.ships[shipIndex].length; modifier++) // Sus
+                for (int modifier = 1; modifier < player.ships[shipIndex].length; modifier++) // Sus
                 {
                     player.ships[shipIndex].PositionOfShip.Add
                         (new Square((x - modifier, y), Square.SquareStatus.ship));
@@ -90,7 +91,7 @@ namespace BattleShip
 
             if (direction == "D")
             {
-                for (int modifier = 0; modifier < player.ships[shipIndex].length; modifier++) // Sus
+                for (int modifier = 1; modifier < player.ships[shipIndex].length; modifier++) // Sus
                 {
                     player.ships[shipIndex].PositionOfShip.Add
                         (new Square((x + modifier, y), Square.SquareStatus.ship));
@@ -102,7 +103,7 @@ namespace BattleShip
 
             if (direction == "L")
             {
-                for (int modifier = 0; modifier < player.ships[shipIndex].length; modifier++) // Sus
+                for (int modifier = 1; modifier < player.ships[shipIndex].length; modifier++) // Sus
                 {
                     player.ships[shipIndex].PositionOfShip.Add
                         (new Square((x, y - modifier), Square.SquareStatus.ship));
@@ -114,7 +115,7 @@ namespace BattleShip
 
             if (direction == "R")
             {
-                for (int modifier = 0; modifier < player.ships[shipIndex].length; modifier++) // Sus
+                for (int modifier = 1; modifier < player.ships[shipIndex].length; modifier++) // Sus
                 {
                     player.ships[shipIndex].PositionOfShip.Add
                         (new Square((x, y + modifier), Square.SquareStatus.ship));

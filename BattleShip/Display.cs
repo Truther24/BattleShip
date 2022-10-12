@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Console = Colorful.Console;
@@ -9,41 +10,49 @@ using Console = Colorful.Console;
 namespace BattleShip
 {
     public class Display
-    { 
+    {
+        public void ShootMessage(Player player)
+        {
+            System.Console.WriteLine($"It's time to shoot for player {player.name} ");
+        }
         public void WrongDirectionMessage()
         {
-            System.Console.WriteLine("The direction you inputted isn't correct! Choose another one");
+            Console.WriteLine("The direction you inputted isn't correct! Choose another one");
         }
         public void PlaceYourShipInDirection
             ((bool canPlaceUp, bool canPlaceDown, bool canPlaceLeft, bool canPlaceRight) canPlaceInDirection)
         {
-            System.Console.WriteLine("You can place your ship starting with the chosen coordinate" +
+            Console.WriteLine("You can place your ship starting with the chosen coordinate" +
                 "in the following directions: ");
-            if (canPlaceInDirection.canPlaceUp) { System.Console.WriteLine("Up: Write U"); }
-            if (canPlaceInDirection.canPlaceDown) { System.Console.WriteLine("Down: Write D"); }
-            if (canPlaceInDirection.canPlaceLeft) { System.Console.WriteLine("Left: Write L"); }
-            if (canPlaceInDirection.canPlaceRight) { System.Console.WriteLine("Right: Write R"); }
+            if (canPlaceInDirection.canPlaceUp) { Console.WriteLine("Up: Write U"); }
+            if (canPlaceInDirection.canPlaceDown) { Console.WriteLine("Down: Write D"); }
+            if (canPlaceInDirection.canPlaceLeft) { Console.WriteLine("Left: Write L"); }
+            if (canPlaceInDirection.canPlaceRight) { Console.WriteLine("Right: Write R"); }
         }
         public void NoFreeSpaces()
         {
-            System.Console.WriteLine("You couldn't place your ship " +
+            Console.WriteLine("You couldn't place your ship " +
                 "because the space was occupied or there were no spaces available to place the ship in any direction!");
         }
         public void IncorrectCoordinatesMessage()
         {
-            System.Console.WriteLine("I'm sorry, your coordinates aren't valid!");
+            Console.WriteLine("I'm sorry, your coordinates aren't valid!");
         }
         public void PlaceShipsMessage(Player player, Ship ship)
         {
-            System.Console.WriteLine($"Please place your {ship.type} of length {ship.length}, {player.name}");
+            Console.Write($"Please place your ", Color.CornflowerBlue);
+            Console.Write($"{ship.type}", Color.Red);
+            Console.Write($" of length ", Color.CornflowerBlue);
+            Console.Write($"{ship.length}, {player.name}", Color.Red);
+            System.Console.WriteLine();
         }
         public void InputForPlayer(int playerCount)
         {
-            System.Console.WriteLine($"Please input the name for player {playerCount}");
+            Console.WriteLine($"Please input the name for player {playerCount}");
         }
         public void Greetings()
         {
-            System.Console.WriteLine("Hello! Welcome to BattleShip");
+            Console.WriteLine("Hello! Welcome to BattleShip");
         }
 
         public void PrintBoard(Board board1, Board board2)
@@ -92,6 +101,21 @@ namespace BattleShip
 
                         Console.Write(" S ", Color.Red);
                     }
+                    else if (board1.ocean[row1, col].status == Square.SquareStatus.missed)
+                    {
+                        Console.Write(" M ", Color.Crimson);
+
+                    }
+                    else if (board1.ocean[row1, col].status == Square.SquareStatus.hit)
+                    {
+                        Console.Write(" H ", Color.LightGoldenrodYellow);
+
+                    }
+                    else if (board1.ocean[row1, col].status == Square.SquareStatus.sunk)
+                    {
+                        Console.Write(" X ", Color.LightGoldenrodYellow);
+
+                    }
                 }
                 Console.Write("    " + "|" + "   ", Color.Red);
                 Console.Write(row2 < 9 ? $" {row2 + 1} " : row2 + 1 + " ", Color.Wheat);
@@ -114,10 +138,27 @@ namespace BattleShip
 
                         Console.Write(" S ", Color.Red);
                     }
+                    else if (board2.ocean[row1, col].status == Square.SquareStatus.missed)
+                    {
+                        Console.Write(" M ", Color.Crimson);
+
+                    }
+                    else if (board2.ocean[row1, col].status == Square.SquareStatus.hit)
+                    {
+                        Console.Write(" H ", Color.LightGoldenrodYellow);
+
+                    }
+                    else if (board2.ocean[row1, col].status == Square.SquareStatus.sunk)
+                    {
+                        Console.Write(" X ", Color.LightGoldenrodYellow);
+
+                    }
                 }
 
             }
             Console.WriteLine();
         }
+
+        
     }
 }

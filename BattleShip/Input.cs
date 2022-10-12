@@ -19,12 +19,11 @@ namespace BattleShip
 
         }
 
-        public (int, int) GetCoordinates(Display display, Player player, int index)
+        public (int, int) GetCoordinates(Display display)
         {
             int userCol = 0;
             int userRow = 0;
 
-            display.PlaceShipsMessage(player, player.ships[index]);
 
             string userOption = Console.ReadLine();
             if (ValidateInput(userOption) && userOption != "")
@@ -35,7 +34,7 @@ namespace BattleShip
                 return (userCol - 1, userRow);
             }
             display.IncorrectCoordinatesMessage();
-            return GetCoordinates(display, player, index);
+            return GetCoordinates(display);
 
         }
         private bool ValidateInput(string userOption)

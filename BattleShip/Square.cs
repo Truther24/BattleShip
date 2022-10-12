@@ -13,7 +13,7 @@ namespace BattleShip
         public (int, int) Position;
         public enum SquareStatus
         {
-            empty, ship, hit, missed
+            empty, ship, hit, missed, sunk
         }
         public Square((int,int) position, SquareStatus status)
         {
