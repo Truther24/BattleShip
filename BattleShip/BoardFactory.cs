@@ -17,7 +17,7 @@ namespace BattleShip
             {
                 display.PlaceShipsMessage(player, player.ships[shipIndex]);
 
-                (int, int) shipCoordinates = input.GetCoordinates(display);
+                (int, int) shipCoordinates = input.GetCoordinatesToGame(display);
 
                 canPlaceInAnyDirection = board.IsPlacementOk(shipCoordinates, player, shipIndex);
                 if (canPlaceInAnyDirection != (false,false,false,false))

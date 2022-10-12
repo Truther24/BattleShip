@@ -27,19 +27,19 @@ namespace BattleShip
                 playerCounter++;
                 if (playerCounter % 2 != 0)
                 {
-                    player1.CheckForSinkingShips(board1);
                     display.ShootMessage(player1);
 
                     player1.Shooting(board2, input, display);
+                    player1.CheckForSinkingShips(board2);
 
                 }
                 else
                 {
-                    player2.CheckForSinkingShips(board2);
 
                     display.ShootMessage(player2);
 
                     player2.Shooting(board1, input, display);
+                    player2.CheckForSinkingShips(board1);
 
                 }
                 display.PrintBoard(board1, board2);

@@ -19,7 +19,12 @@ namespace BattleShip
 
         }
 
-        public (int, int) GetCoordinates(Display display)
+        public (int, int) GetCoordinatesToGame(Display display)
+        {
+            return GetCoordinates(display);
+        }
+
+        private (int, int) GetCoordinates(Display display) 
         {
             int userCol = 0;
             int userRow = 0;

@@ -24,7 +24,7 @@ namespace BattleShip
         }
         public void Shooting(Board board, Input input, Display display)
         {
-            (int, int) coordinates = input.GetCoordinates(display);
+            (int, int) coordinates = input.GetCoordinatesToGame(display);
             if (board.ocean[coordinates.Item1, coordinates.Item2] == null)
             {
                 board.ocean[coordinates.Item1, coordinates.Item2]
