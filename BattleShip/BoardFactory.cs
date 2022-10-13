@@ -24,6 +24,7 @@ namespace BattleShip
     {
         public void ManualPlacement(int shipIndex, Game game, Player player,Board board, Input input, Display display )
         {
+            bool printWithShips = true;
 
             for (; shipIndex < player.ships.Count; shipIndex++)
             {
@@ -40,7 +41,7 @@ namespace BattleShip
 
                     board.AddCoordinatesToShipAndBoard
                         (direction, shipCoordinates, player, shipIndex, canPlaceInAnyDirection);
-                    display.PrintBoard(game.board1, game.board2);
+                    display.PrintBoard(game.board1, game.board2, printWithShips);
                 }
                 else
                 {
@@ -55,6 +56,7 @@ namespace BattleShip
 
             for (; shipIndex < player.ships.Count; shipIndex++)
             {
+                bool printWithShips = true;
 
                 (int, int) shipCoordinates = (rnd.Next(0, board.nRows), rnd.Next(0, board.nCols));
 
@@ -63,16 +65,16 @@ namespace BattleShip
                 {
                     List<string> listOfPossibleMoves = board.DeterminePossibleDirections(canPlaceInAnyDirection);
 
-                    string direction = listOfPossibleMoves[rnd.Next(0, listOfPossibleMoves.Count + 1)];
+                    string direction = listOfPossibleMoves[rnd.Next(listOfPossibleMoves.Count)];
 
                     board.AddCoordinatesToShipAndBoard
                         (direction, shipCoordinates, player, shipIndex, canPlaceInAnyDirection);
-                    display.PrintBoard(game.board1, game.board2);
+                    display.PrintBoard(game.board1, game.board2, printWithShips);
                 }
                 else
                 {
                     
-                    ManualPlacement(shipIndex, game, player, board, input, display);
+                    RandomPlacement(shipIndex, game, player, board, input, display);
                 }
             }
 

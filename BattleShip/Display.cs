@@ -55,7 +55,7 @@ namespace BattleShip
             Console.WriteLine("Hello! Welcome to BattleShip");
         }
 
-        public void PrintBoard(Board board1, Board board2)
+        public void PrintBoard(Board board1, Board board2, bool printWithShips)
         {
             // Cadet Blue color values
             int rColor = 95;
@@ -67,7 +67,7 @@ namespace BattleShip
 
             for (int i = 0; i < board1.nRows; i++)
             {
-                Console.Write($"{(char)('A'+i)}  ", Color.Wheat);
+                Console.Write($"{(char)('A' + i)}  ", Color.Wheat);
             }
 
             Console.Write("   " + "|" + "       ", Color.Red);
@@ -90,17 +90,27 @@ namespace BattleShip
                     {
                         bColor = 160;
                     }
-                    
-                    if (board1.ocean[row1,col] == null)
+
+                    if (board1.ocean[row1, col] == null)
                     {
-                        
+
                         Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
                     }
                     else if (board1.ocean[row1, col].status == Square.SquareStatus.ship)
                     {
+                        if (printWithShips)
+                        {
 
-                        Console.Write(" S ", Color.Red);
+                            Console.Write(" S ", Color.Red);
+                        }
+                        else
+                        {
+                            Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
+
+                        }
                     }
+
+
                     else if (board1.ocean[row1, col].status == Square.SquareStatus.missed)
                     {
                         Console.Write(" M ", Color.Crimson);
@@ -135,9 +145,19 @@ namespace BattleShip
                     }
                     else if (board2.ocean[row1, col].status == Square.SquareStatus.ship)
                     {
+                        if (printWithShips)
+                        {
 
-                        Console.Write(" S ", Color.Red);
+                            Console.Write(" S ", Color.Red);
+                        }
+                        else
+                        {
+                            Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
+
+                        }
                     }
+                    
+
                     else if (board2.ocean[row1, col].status == Square.SquareStatus.missed)
                     {
                         Console.Write(" M ", Color.Crimson);
@@ -159,6 +179,6 @@ namespace BattleShip
             Console.WriteLine();
         }
 
-        
+
     }
 }

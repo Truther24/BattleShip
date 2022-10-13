@@ -20,12 +20,18 @@ namespace BattleShip
         public void GameBegins(Player player1, Player player2, Display display, Input input)
         {
             int playerCounter = 0;
+            bool printWithShips = false;
             bool isGameRunning = true;
             bool didShotHit = false;
 
+            bool player1Won = false;
+            bool player2Won = false;
+
             while (isGameRunning)
             {
+                player1Won = board1.didPlayerWin(player1);
                 playerCounter++;
+                display.PrintBoard(board1, board2, printWithShips);
                 if (playerCounter % 2 != 0)
                 {
                     display.ShootMessage(player1);
@@ -37,7 +43,6 @@ namespace BattleShip
                         playerCounter--;
                         continue;
                     }
-                    display.PrintBoard(board1, board2);
 
                 }
                 else
@@ -52,7 +57,6 @@ namespace BattleShip
                         playerCounter--;
                         continue;
                     }
-                    display.PrintBoard(board1, board2);
 
                 }
 
