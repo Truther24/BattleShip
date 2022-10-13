@@ -19,15 +19,18 @@ namespace BattleShip
             ocean = new Square[rows, cols];
         }
 
-        public (bool, bool, bool, bool) IsPlacementOk((int, int) coordinates, Player player, int shipIndex)
+        public AllowedDirection IsPlacementOk((int, int) coordinates, Player player, int shipIndex)
         {
             bool canPlaceUp = false; bool canPlaceDown = false;
             bool canPlaceLeft = false; bool canPlaceRight = false;
 
             int x = coordinates.Item1; int y = coordinates.Item2;
 
-            if (x < 0 || x > nRows || y < 0 || y > nCols) { return (false, false, false, false); }
-            if (ocean[x, y] != null) { return (false, false, false, false); }
+            if (x < 0 || x > nRows || y < 0 || y > nCols) 
+            { 
+                return new AllowedDirection { Up=false, Down=false, Left=false, Right=false };
+            }
+            if (ocean[x, y] != null) { return new AllowedDirection { Up = false, Down = false, Left = false, Right = false };  }
             /*ocean[x-1,y] Sus*/
 
             int countFreeSpacesUp = 0; int countFreeSpacesDown = 0;
@@ -60,13 +63,24 @@ namespace BattleShip
                 if (countFreeSpacesLeft + 1 > player.ships[shipIndex].length - 1) { canPlaceLeft = true; }
                 if (countFreeSpacesRight + 1 > player.ships[shipIndex].length - 1) { canPlaceRight = true; }
             }
-            return (canPlaceUp, canPlaceDown, canPlaceLeft, canPlaceRight);
+            return new AllowedDirection { Up = canPlaceUp, Down = canPlaceDown, Left = canPlaceLeft, Right = canPlaceRight};
+        }
+
+        public List<string> DeterminePossibleDirections
+            (AllowedDirection canPlaceInDirection)
+        {
+            List<string> listOfPossibleMoves = new();
+            if(canPlaceInDirection.Up) { listOfPossibleMoves.Add("U"); }
+            if(canPlaceInDirection.Down) { listOfPossibleMoves.Add("D"); }
+            if(canPlaceInDirection.Left) { listOfPossibleMoves.Add("L"); }
+            if(canPlaceInDirection.Right) { listOfPossibleMoves.Add("R"); }
+            return listOfPossibleMoves;
         }
 
 
         public void AddCoordinatesToShipAndBoard
             (string direction, (int, int) shipCoordinates, Player player, int shipIndex,
-            (bool canPlaceUp, bool canPlaceDown, bool canPlaceLeft, bool canPlaceRight) canPlaceInDirection)
+            AllowedDirection canPlaceInDirection)
         {
             int x = shipCoordinates.Item1;
             int y = shipCoordinates.Item2;

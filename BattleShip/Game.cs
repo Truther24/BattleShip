@@ -21,6 +21,7 @@ namespace BattleShip
         {
             int playerCounter = 0;
             bool isGameRunning = true;
+            bool didShotHit = false;
 
             while (isGameRunning)
             {
@@ -29,8 +30,14 @@ namespace BattleShip
                 {
                     display.ShootMessage(player1);
 
-                    player1.Shooting(board2, input, display);
+                    didShotHit = player1.Shooting(board2, input, display);
                     player1.CheckForSinkingShips(board2);
+                    if(didShotHit) 
+                    {
+                        playerCounter--;
+                        continue;
+                    }
+                    display.PrintBoard(board1, board2);
 
                 }
                 else
@@ -38,11 +45,16 @@ namespace BattleShip
 
                     display.ShootMessage(player2);
 
-                    player2.Shooting(board1, input, display);
+                    didShotHit = player2.Shooting(board1, input, display);
                     player2.CheckForSinkingShips(board1);
+                    if (didShotHit)
+                    {
+                        playerCounter--;
+                        continue;
+                    }
+                    display.PrintBoard(board1, board2);
 
                 }
-                display.PrintBoard(board1, board2);
 
             }
         }

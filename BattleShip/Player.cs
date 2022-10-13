@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleShip.utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -17,18 +18,19 @@ namespace BattleShip
         {
             this.name = name;
             ships = new();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i <= Utils.GetShipTypeMaxValue(); i++)
             {
-                ships.Add(new Ship(i));
+                ships.Add(new Ship((ShipType)i));
             }
         }
-        public void Shooting(Board board, Input input, Display display)
+        public bool Shooting(Board board, Input input, Display display)
         {
             (int, int) coordinates = input.GetCoordinatesToGame(display);
             if (board.ocean[coordinates.Item1, coordinates.Item2] == null)
             {
                 board.ocean[coordinates.Item1, coordinates.Item2]
                     = new Square(coordinates, Square.SquareStatus.missed);
+                return false;
 
             }
             if (board.ocean[coordinates.Item1, coordinates.Item2].status == Square.SquareStatus.ship)
@@ -48,7 +50,9 @@ namespace BattleShip
                     }
 
                 }
+                return true;
             }
+            return false;
         }
         public void CheckForSinkingShips(Board board)
         {
@@ -62,8 +66,10 @@ namespace BattleShip
                         ship.status = Square.SquareStatus.sunk;
                         board.ocean[coordinates.Item1, coordinates.Item2].status = Square.SquareStatus.sunk;
                     }
+                    
                 }
             }
+            
         }
     }
 }

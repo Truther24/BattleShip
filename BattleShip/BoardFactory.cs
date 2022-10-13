@@ -1,17 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BattleShip
 {
+    public class AllowedDirection
+    {
+        public bool Down { get; set; }
+        public bool Up { get; set; }
+        public bool Left { get; set; }
+        public bool Right { get; set; }
+
+        public bool AnyDirectionAllowed()
+        {
+            return Down || Up || Left || Right;
+        }
+    }
     public class BoardFactory
     {
         public void ManualPlacement(int shipIndex, Game game, Player player,Board board, Input input, Display display )
         {
-            (bool, bool, bool, bool) canPlaceInAnyDirection;
 
             for (; shipIndex < player.ships.Count; shipIndex++)
             {
@@ -19,11 +31,12 @@ namespace BattleShip
 
                 (int, int) shipCoordinates = input.GetCoordinatesToGame(display);
 
-                canPlaceInAnyDirection = board.IsPlacementOk(shipCoordinates, player, shipIndex);
-                if (canPlaceInAnyDirection != (false,false,false,false))
+                var canPlaceInAnyDirection = board.IsPlacementOk(shipCoordinates, player, shipIndex);
+                if (canPlaceInAnyDirection.AnyDirectionAllowed())
                 {
+                    List<string> listOfPossibleMoves = board.DeterminePossibleDirections(canPlaceInAnyDirection);
                     display.PlaceYourShipInDirection(canPlaceInAnyDirection);
-                    string direction = input.ChooseDirectionToPlaceShip(display);
+                    string direction = input.ChooseDirectionToPlaceShip(display, listOfPossibleMoves);
 
                     board.AddCoordinatesToShipAndBoard
                         (direction, shipCoordinates, player, shipIndex, canPlaceInAnyDirection);
@@ -35,6 +48,34 @@ namespace BattleShip
                     ManualPlacement(shipIndex, game, player, board, input, display);
                 }
             }
+        }
+        public void RandomPlacement(int shipIndex, Game game, Player player, Board board, Input input, Display display)
+        {
+            Random rnd = new();
+
+            for (; shipIndex < player.ships.Count; shipIndex++)
+            {
+
+                (int, int) shipCoordinates = (rnd.Next(0, board.nRows), rnd.Next(0, board.nCols));
+
+                var canPlaceInAnyDirection = board.IsPlacementOk(shipCoordinates, player, shipIndex);
+                if (canPlaceInAnyDirection.AnyDirectionAllowed())
+                {
+                    List<string> listOfPossibleMoves = board.DeterminePossibleDirections(canPlaceInAnyDirection);
+
+                    string direction = listOfPossibleMoves[rnd.Next(0, listOfPossibleMoves.Count + 1)];
+
+                    board.AddCoordinatesToShipAndBoard
+                        (direction, shipCoordinates, player, shipIndex, canPlaceInAnyDirection);
+                    display.PrintBoard(game.board1, game.board2);
+                }
+                else
+                {
+                    
+                    ManualPlacement(shipIndex, game, player, board, input, display);
+                }
+            }
+
         }
     }
 }

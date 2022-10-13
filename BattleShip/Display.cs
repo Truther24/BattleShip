@@ -20,14 +20,14 @@ namespace BattleShip
             Console.WriteLine("The direction you inputted isn't correct! Choose another one");
         }
         public void PlaceYourShipInDirection
-            ((bool canPlaceUp, bool canPlaceDown, bool canPlaceLeft, bool canPlaceRight) canPlaceInDirection)
+            (AllowedDirection canPlaceInDirection)
         {
             Console.WriteLine("You can place your ship starting with the chosen coordinate" +
                 "in the following directions: ");
-            if (canPlaceInDirection.canPlaceUp) { Console.WriteLine("Up: Write U"); }
-            if (canPlaceInDirection.canPlaceDown) { Console.WriteLine("Down: Write D"); }
-            if (canPlaceInDirection.canPlaceLeft) { Console.WriteLine("Left: Write L"); }
-            if (canPlaceInDirection.canPlaceRight) { Console.WriteLine("Right: Write R"); }
+            if (canPlaceInDirection.Up) { Console.WriteLine("Up: Write U"); }
+            if (canPlaceInDirection.Down) { Console.WriteLine("Down: Write D"); }
+            if (canPlaceInDirection.Left) { Console.WriteLine("Left: Write L"); }
+            if (canPlaceInDirection.Right) { Console.WriteLine("Right: Write R"); }
         }
         public void NoFreeSpaces()
         {

@@ -64,16 +64,15 @@ namespace BattleShip
 
         }
 
-        public string ChooseDirectionToPlaceShip(Display display)
+        public string ChooseDirectionToPlaceShip(Display display, List<string> listOfPossibleMoves)
         {
-            string[] possibleDirections = new string[] { "U", "D", "L", "R" };
             string direction = Console.ReadLine();
-            foreach (var possibleDirection in possibleDirections)
+            foreach (var possibleDirection in listOfPossibleMoves)
             {
                 if (direction.ToUpper() == possibleDirection) { return direction.ToUpper(); }
             }
             display.WrongDirectionMessage();
-            return ChooseDirectionToPlaceShip(display);
+            return ChooseDirectionToPlaceShip(display, listOfPossibleMoves);
         }
     }
 }

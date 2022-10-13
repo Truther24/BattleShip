@@ -1,8 +1,10 @@
-﻿using System;
+﻿using BattleShip.utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace BattleShip
 {
@@ -12,18 +14,14 @@ namespace BattleShip
         public int length;
         public List<Square> PositionOfShip;
 
+        
 
-        public enum ShipType 
-        {
-            Carrier , Cruiser, Battleship, Submarine, Destroyer
-        }
-
-        public Ship(int indexOfEnum)
+        public Ship(ShipType shipType)
         {
             PositionOfShip = new();
-            var values = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();
-            this.type = values[indexOfEnum];
-            if (values[indexOfEnum] == ShipType.Carrier)
+           /* var values = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();*/
+            /*this.type = values[indexOfEnum];*/
+            /*if (values[indexOfEnum] == ShipType.Carrier)
             {
                 this.length = 5;
             }
@@ -38,7 +36,9 @@ namespace BattleShip
             if (values[indexOfEnum] == ShipType.Destroyer)
             {
                 this.length = 2;
-            }
+            }*/
+            this.length = (int)shipType + 1;
+            this.type = shipType;
 
         }
     }
