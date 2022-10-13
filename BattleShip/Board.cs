@@ -165,28 +165,6 @@ namespace BattleShip
             }
 
         }
-
-        public bool didPlayerWin(Player player)
-        {
-            int shipCount = 0;
-            for (int i = 0; i < player.ships.Count; i++)
-            {
-
-                for (int j = 0; j < player.ships[i].PositionOfShip.Count; j++)
-                {
-                    if (player.ships[i].PositionOfShip[j].status == Square.SquareStatus.sunk)
-                    {
-                        shipCount++;
-                    }
-                }
-
-            }
-            if(shipCount == 15)
-            {
-                return true;
-            }
-            return false;
-        }
     }
 }
 

@@ -31,6 +31,7 @@ namespace BattleShip
         {
             Console.Write("It's time to shoot for player ");
             Console.Write($"{player.name} !\n",Color.Red);
+            Console.Write("Coordinate : ");
         }
         public void WrongDirectionMessage()
         {
@@ -138,7 +139,7 @@ namespace BattleShip
                         if (printWithShips)
                         {
 
-                            Console.Write(" S ", Color.Red);
+                            Console.Write(" S ", Color.White);
                         }
                         else
                         {
@@ -150,17 +151,17 @@ namespace BattleShip
 
                     else if (board1.ocean[row1, col].status == Square.SquareStatus.missed)
                     {
-                        Console.Write(" M ", Color.Crimson);
+                        Console.Write(" M ", Color.SeaGreen);
 
                     }
                     else if (board1.ocean[row1, col].status == Square.SquareStatus.hit)
                     {
-                        Console.Write(" H ", Color.LightGoldenrodYellow);
+                        Console.Write(" H ", Color.Yellow);
 
                     }
                     else if (board1.ocean[row1, col].status == Square.SquareStatus.sunk)
                     {
-                        Console.Write(" X ", Color.LightGoldenrodYellow);
+                        Console.Write(" X ", Color.Red);
 
                     }
                 }
@@ -185,7 +186,7 @@ namespace BattleShip
                         if (printWithShips)
                         {
 
-                            Console.Write(" S ", Color.Red);
+                            Console.Write(" S ", Color.White);
                         }
                         else
                         {
@@ -197,17 +198,17 @@ namespace BattleShip
 
                     else if (board2.ocean[row1, col].status == Square.SquareStatus.missed)
                     {
-                        Console.Write(" M ", Color.Crimson);
+                        Console.Write(" M ", Color.SeaGreen);
 
                     }
                     else if (board2.ocean[row1, col].status == Square.SquareStatus.hit)
                     {
-                        Console.Write(" H ", Color.LightGoldenrodYellow);
+                        Console.Write(" H ", Color.Yellow);
 
                     }
                     else if (board2.ocean[row1, col].status == Square.SquareStatus.sunk)
                     {
-                        Console.Write(" X ", Color.LightGoldenrodYellow);
+                        Console.Write(" X ", Color.Red);
 
                     }
                 }
@@ -217,6 +218,34 @@ namespace BattleShip
             Console.WriteLine();
         }
 
+        public void PrintPlayerHeader( string player1Name, string player2Name)
+        {
+            Console.Write("              ");
+            Console.Write($"{player1Name}", Color.Red);
+            Console.Write("                  ");
+            Console.Write("                  ");
+            Console.Write($"{player2Name}\n", Color.Red);
+        }
 
+        public void ShipHitMessage(string playerName)
+        {
+            Console.Write("You hit one of ");
+            Console.Write($"{playerName}'s", Color.Red);
+            Console.Write(" ships!\n\n");
+        }
+
+        internal void ShipSunkMessage(string playerName)
+        {
+            Console.Write("One of ");
+            Console.Write($"{playerName}'s", Color.Red);
+            Console.Write(" ships was sunk !\n\n");
+        }
+
+        internal void ShipDidntHitMessage()
+        {
+            Console.Write("It looks like you ");
+            Console.Write($"missed", Color.Red);
+            Console.Write(" your shot!\n\n");
+        }
     }
 }

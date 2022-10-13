@@ -54,12 +54,13 @@ namespace BattleShip
             }
             return false;
         }
-        public void CheckForSinkingShips(Board board)
+        public void CheckForSinkingShips(Board board, Display display)
         {
             for (int shipIndex = 0; shipIndex < ships.Count; shipIndex++)
             {
                 if (ships[shipIndex].PositionOfShip.All(ship => ship.status == Square.SquareStatus.hit))
                 {
+                    display.ShipSunkMessage(name);
                     foreach (Square ship in ships[shipIndex].PositionOfShip)
                     {
                         (int, int) coordinates = ship.Position;
@@ -70,6 +71,29 @@ namespace BattleShip
                 }
             }
             
+        }
+        public bool didPlayerWin()
+        {
+            int numberOfTotalShips = 0;
+            int shipCount = 0;
+            for (int i = 0; i < ships.Count; i++)
+            {
+                numberOfTotalShips += ships[i].PositionOfShip.Count;
+
+                for (int j = 0; j < ships[i].PositionOfShip.Count; j++)
+                {
+                    if (ships[i].PositionOfShip[j].status == Square.SquareStatus.sunk)
+                    {
+                        shipCount++;
+                    }
+                }
+
+            }
+            if (shipCount == numberOfTotalShips)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace BattleShip
             {
                 this.length = 2;
             }*/
-            this.length = rnd.Next(1,6);
+            this.length = rnd.Next(2,6);
             this.type = (ShipType)i;
 
         }

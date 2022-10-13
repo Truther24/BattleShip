@@ -22,11 +22,11 @@ namespace BattleShip
     }
     public class BoardFactory
     {
-        public void ManualPlacement(int shipIndex, Game game, Player player,Board board, Input input, Display display )
+        public void ManualPlacement(Game game, Player player, Board board, Input input, Display display )
         {
             bool printWithShips = true;
 
-            for (; shipIndex < player.ships.Count; shipIndex++)
+            for (int shipIndex = 0; shipIndex < player.ships.Count; shipIndex++)
             {
                 display.PlaceShipsMessage(player, player.ships[shipIndex]);
 
@@ -41,6 +41,9 @@ namespace BattleShip
 
                     board.AddCoordinatesToShipAndBoard
                         (direction, shipCoordinates, player, shipIndex, canPlaceInAnyDirection);
+                    display.PrintPlayerHeader(game.player1Name, game.player2Name);
+
+
                     display.PrintBoard(game.board1, game.board2, printWithShips);
                 }
                 else
@@ -51,11 +54,11 @@ namespace BattleShip
                 }
             }
         }
-        public void RandomPlacement(int shipIndex, Game game, Player player, Board board, Input input, Display display)
+        public void RandomPlacement(Game game, Player player, Board board, Display display)
         {
             Random rnd = new();
 
-            for (; shipIndex < player.ships.Count; shipIndex++)
+            for (int shipIndex = 0; shipIndex < player.ships.Count; shipIndex++)
             {
                 bool printWithShips = true;
 
@@ -70,12 +73,14 @@ namespace BattleShip
 
                     board.AddCoordinatesToShipAndBoard
                         (direction, shipCoordinates, player, shipIndex, canPlaceInAnyDirection);
+                    display.PrintPlayerHeader(game.player1Name, game.player2Name);
+
                     display.PrintBoard(game.board1, game.board2, printWithShips);
                 }
                 else
                 {
-                    
-                    RandomPlacement(shipIndex, game, player, board, input, display);
+                    shipIndex--;
+                    continue;
                 }
             }
 
