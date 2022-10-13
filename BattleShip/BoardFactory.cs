@@ -46,7 +46,8 @@ namespace BattleShip
                 else
                 {
                     display.NoFreeSpaces();
-                    ManualPlacement(shipIndex, game, player, board, input, display);
+                    shipIndex--;
+                    continue;
                 }
             }
         }

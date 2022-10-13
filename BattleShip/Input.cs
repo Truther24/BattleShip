@@ -24,7 +24,7 @@ namespace BattleShip
             return GetCoordinates(display);
         }
 
-        private (int, int) GetCoordinates(Display display) 
+        private (int, int) GetCoordinates(Display display)
         {
             int userCol = 0;
             int userRow = 0;
@@ -73,6 +73,33 @@ namespace BattleShip
             }
             display.WrongDirectionMessage();
             return ChooseDirectionToPlaceShip(display, listOfPossibleMoves);
+        }
+
+        public string GetManualOrRandomPlacement(Display display, Player player)
+        {
+            display.ManualOrRandomMessage(player);
+            string selection = Console.ReadLine();
+            if (selection.ToUpper() != "M" && selection.ToUpper() != "R")
+            {
+                display.WrongDirectionMessage();
+                return GetManualOrRandomPlacement(display, player);
+            }
+            return selection;
+        }
+        public int GetHowManyShips(Display display)
+        {
+            int number;
+            display.NumberOfShipsMessage();
+            string numberOfShips = Console.ReadLine();
+            if (int.TryParse(numberOfShips, out number))
+            {
+                if (number > 2 && number < 14)
+                {
+                return number;
+                }
+            }
+            display.WrongDirectionMessage();
+            return GetHowManyShips(display);
         }
     }
 }

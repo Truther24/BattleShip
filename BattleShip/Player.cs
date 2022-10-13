@@ -14,13 +14,13 @@ namespace BattleShip
         public string name;
         public List<Ship> ships;
 
-        public Player(string name)
+        public Player(string name, int numberOfShips)
         {
             this.name = name;
             ships = new();
-            for (int i = 0; i <= Utils.GetShipTypeMaxValue(); i++)
+            for (int i = 0; i < numberOfShips; i++)
             {
-                ships.Add(new Ship((ShipType)i));
+                ships.Add(new Ship(i));
             }
         }
         public bool Shooting(Board board, Input input, Display display)

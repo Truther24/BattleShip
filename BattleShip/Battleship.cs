@@ -22,17 +22,36 @@ namespace BattleShip
         public void Run()
         {
             display.Greetings();
-            Player player1 = new(input.GetNameForPlayer(display));
-            Player player2 = new(input.GetNameForPlayer(display));
-            
+            string placementOption;
+            Player player1 = new(input.GetNameForPlayer(display), input.GetHowManyShips(display));
+            Player player2 = new(input.GetNameForPlayer(display), input.GetHowManyShips(display));
             Game game = new();
+
             bool printWithShips = true;
-            display.PrintBoard(game.board1, game.board2, printWithShips);;
+            display.PrintBoard(game.board1, game.board2, printWithShips);
 
-            boardFactory.ManualPlacement(0, game, player1, game.board1, input, display);
+            placementOption = input.GetManualOrRandomPlacement(display, player1);
+            if (placementOption.ToUpper() == "M")
+            {
 
-            boardFactory.ManualPlacement(0, game, player2, game.board2, input, display);
+                boardFactory.ManualPlacement(0, game, player1, game.board1, input, display);
+            }
+            else
+            {
+                boardFactory.RandomPlacement(0, game, player1, game.board1, input, display);
 
+            }
+            placementOption = input.GetManualOrRandomPlacement(display, player2);
+            if (placementOption.ToUpper() == "M")
+            {
+
+                boardFactory.ManualPlacement(0, game, player2, game.board2, input, display);
+            }
+            else
+            {
+                boardFactory.RandomPlacement(0, game, player2, game.board2, input, display);
+
+            }
             game.GameBegins(player1, player2, display, input);
 
         }

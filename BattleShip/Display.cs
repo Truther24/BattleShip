@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,53 +12,84 @@ namespace BattleShip
 {
     public class Display
     {
+        public void NumberOfShipsMessage()
+        {
+            Console.Write("Please type the number of ");
+            Console.Write($"ships", Color.Red);
+            Console.Write(" you would like to have! (min: 3, max: 13)\n");
+
+        }
         public void DisplayWinnerMessage(Player player)
         {
-            Console.WriteLine($"Congratulation! Player {player.name} won!");
+            Console.WriteLine("Congratulation!",Color.FromKnownColor(KnownColor.Highlight));
+            Console.Write($"Player ");
+            Console.Write($"{player.name}",Color.Red);
+            Console.Write(" Won!\n");
 
         }
         public void ShootMessage(Player player)
         {
-            Console.WriteLine($"It's time to shoot for player {player.name} ");
+            Console.Write("It's time to shoot for player ");
+            Console.Write($"{player.name} !\n",Color.Red);
         }
         public void WrongDirectionMessage()
         {
-            Console.WriteLine("The direction you inputted isn't correct! Choose another one");
+            Console.Write("Your input ");
+            Console.Write("isn't", Color.Red);
+            Console.Write(" correct! Try again\n");
         }
         public void PlaceYourShipInDirection
             (AllowedDirection canPlaceInDirection)
         {
             Console.WriteLine("You can place your ship starting with the chosen coordinate" +
                 "in the following directions: ");
-            if (canPlaceInDirection.Up) { Console.WriteLine("Up: Write U"); }
-            if (canPlaceInDirection.Down) { Console.WriteLine("Down: Write D"); }
-            if (canPlaceInDirection.Left) { Console.WriteLine("Left: Write L"); }
-            if (canPlaceInDirection.Right) { Console.WriteLine("Right: Write R"); }
+            if (canPlaceInDirection.Up) { Console.Write("Up: Write U\n",Color.Red); }
+            if (canPlaceInDirection.Down) { Console.Write("Down: Write D\n", Color.Red); }
+            if (canPlaceInDirection.Left) { Console.Write("Left: Write L\n", Color.Red); }
+            if (canPlaceInDirection.Right) { Console.Write("Right: Write R\n", Color.Red); }
         }
         public void NoFreeSpaces()
         {
-            Console.WriteLine("You couldn't place your ship " +
-                "because the space was occupied or there were no spaces available to place the ship in any direction!");
+            Console.Write("You couldn't place your ");
+            Console.Write($"ship", Color.Red);
+            Console.Write(" because the space was ");
+            Console.Write($"occupied", Color.Red);
+            Console.Write(" or there were no spaces available to place the ship in any direction!\n");
         }
         public void IncorrectCoordinatesMessage()
         {
-            Console.WriteLine("I'm sorry, your coordinates aren't valid!");
+            Console.Write("I'm sorry, your ");
+            Console.Write("coordinates",Color.Red);
+            Console.Write(" aren't valid!\n");
         }
         public void PlaceShipsMessage(Player player, Ship ship)
         {
             Console.Write($"Please place your ", Color.CornflowerBlue);
             Console.Write($"{ship.type}", Color.Red);
             Console.Write($" of length ", Color.CornflowerBlue);
-            Console.Write($"{ship.length}, {player.name}", Color.Red);
-            System.Console.WriteLine();
+            Console.Write($"{ship.length}, {player.name}\n", Color.Red);
         }
         public void InputForPlayer(int playerCount)
         {
-            Console.WriteLine($"Please input the name for player {playerCount}");
+            Console.Write($"Please input the name for ");
+            Console.Write($"player {playerCount} :\n\n",Color.RoyalBlue);
         }
         public void Greetings()
         {
-            Console.WriteLine("Hello! Welcome to BattleShip");
+            Console.Write("Hello! Welcome to ");
+            Console.Write("BattleShip",Color.Aqua);
+            Console.Write(" !\n\n",Color.Red);
+        }
+        public void ManualOrRandomMessage(Player player)
+        {
+            Console.Write("Player ");
+            Console.Write($"{player.name}", Color.Red);
+            Console.Write(", select between ");
+            Console.Write($"Manual", Color.Red);
+            Console.Write(" (m) or ");
+            Console.Write($"Random", Color.Red);
+            Console.Write(" (r) Ship Placement !\n");
+
         }
 
         public void PrintBoard(Board board1, Board board2, bool printWithShips)
@@ -181,6 +213,7 @@ namespace BattleShip
                 }
 
             }
+            Console.WriteLine();
             Console.WriteLine();
         }
 

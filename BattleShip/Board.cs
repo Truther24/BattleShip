@@ -42,9 +42,9 @@ namespace BattleShip
                 {
                     return new AllowedDirection { Up = false, Down = false, Left = false, Right = false };
                 }
-            }
-            
-            if (ocean[x - 1,y] != null || ocean[x + 1, y] != null || ocean[x , y - 1] != null || ocean[x, y + 1] != null)
+            }*/
+
+            /*if (ocean[x - 1, y] != null || ocean[x + 1, y] != null || ocean[x, y - 1] != null || ocean[x, y + 1] != null)
             { return new AllowedDirection { Up = false, Down = false, Left = false, Right = false }; }*/
 
 

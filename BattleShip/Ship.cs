@@ -13,13 +13,19 @@ namespace BattleShip
         public object type;
         public int length;
         public List<Square> PositionOfShip;
+        private Random rnd;
 
         
 
-        public Ship(ShipType shipType)
+        public Ship(int i)
         {
+            rnd = new();
+            if(i > Enum.GetValues(typeof(ShipType)).Length - 1)
+            {
+                i = rnd.Next(0, Enum.GetValues(typeof(ShipType)).Length);
+            }
             PositionOfShip = new();
-           /* var values = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();*/
+            /* var values = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();*/
             /*this.type = values[indexOfEnum];*/
             /*if (values[indexOfEnum] == ShipType.Carrier)
             {
@@ -37,8 +43,8 @@ namespace BattleShip
             {
                 this.length = 2;
             }*/
-            this.length = (int)shipType + 1;
-            this.type = shipType;
+            this.length = rnd.Next(1,6);
+            this.type = (ShipType)i;
 
         }
     }
