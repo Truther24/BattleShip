@@ -11,9 +11,14 @@ namespace BattleShip
 {
     public class Display
     {
+        public void DisplayWinnerMessage(Player player)
+        {
+            Console.WriteLine($"Congratulation! Player {player.name} won!");
+
+        }
         public void ShootMessage(Player player)
         {
-            System.Console.WriteLine($"It's time to shoot for player {player.name} ");
+            Console.WriteLine($"It's time to shoot for player {player.name} ");
         }
         public void WrongDirectionMessage()
         {

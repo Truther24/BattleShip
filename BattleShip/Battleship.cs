@@ -31,7 +31,7 @@ namespace BattleShip
 
             boardFactory.ManualPlacement(0, game, player1, game.board1, input, display);
 
-            boardFactory.RandomPlacement(0, game, player2, game.board2, input, display);
+            boardFactory.ManualPlacement(0, game, player2, game.board2, input, display);
 
             game.GameBegins(player1, player2, display, input);
 

@@ -30,6 +30,23 @@ namespace BattleShip
             while (isGameRunning)
             {
                 player1Won = board1.didPlayerWin(player1);
+                player2Won = board2.didPlayerWin(player2);
+
+                if (player1Won || player2Won)
+                {
+                    if (player1Won)
+                    {
+                    display.DisplayWinnerMessage(player1);
+
+                    }
+                    else
+                    {
+
+                    display.DisplayWinnerMessage(player2);
+                    }
+                    break;
+                }
+                
                 playerCounter++;
                 display.PrintBoard(board1, board2, printWithShips);
                 if (playerCounter % 2 != 0)
