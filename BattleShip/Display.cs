@@ -95,10 +95,6 @@ namespace BattleShip
 
         public void PrintBoard(Board board1, Board board2, bool printWithShips)
         {
-            // Cadet Blue color values
-            int rColor = 95;
-            int gColor = 158;
-            int bColor = 160;
 
             Console.WriteLine();
             Console.Write("    ");
@@ -123,27 +119,21 @@ namespace BattleShip
                 for (int col = 0; col < board1.nCols; col++)
                 {
 
-                    bColor += 4;
-                    if (bColor > 220)
-                    {
-                        bColor = 160;
-                    }
-
                     if (board1.ocean[row1, col] == null)
                     {
 
-                        Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
+                        Console.Write(" ~ ", Color.CadetBlue);
                     }
                     else if (board1.ocean[row1, col].status == Square.SquareStatus.ship)
                     {
                         if (printWithShips)
                         {
 
-                            Console.Write(" S ", Color.White);
+                            Console.Write(" S ", Color.LawnGreen);
                         }
                         else
                         {
-                            Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
+                            Console.Write(" ~ ", Color.CadetBlue);
 
                         }
                     }
@@ -151,12 +141,12 @@ namespace BattleShip
 
                     else if (board1.ocean[row1, col].status == Square.SquareStatus.missed)
                     {
-                        Console.Write(" M ", Color.SeaGreen);
+                        Console.Write(" M ", Color.DarkGray);
 
                     }
                     else if (board1.ocean[row1, col].status == Square.SquareStatus.hit)
                     {
-                        Console.Write(" H ", Color.Yellow);
+                        Console.Write(" H ", Color.BlueViolet);
 
                     }
                     else if (board1.ocean[row1, col].status == Square.SquareStatus.sunk)
@@ -170,27 +160,22 @@ namespace BattleShip
 
                 for (int col = 0; col < board2.nCols; col++)
                 {
-                    bColor += 4;
-                    if (bColor > 220)
-                    {
-                        bColor = 160;
-                    }
 
                     if (board2.ocean[row2, col] == null)
                     {
 
-                        Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
+                        Console.Write(" ~ ", Color.CadetBlue);
                     }
                     else if (board2.ocean[row1, col].status == Square.SquareStatus.ship)
                     {
                         if (printWithShips)
                         {
 
-                            Console.Write(" S ", Color.White);
+                            Console.Write(" S ", Color.LawnGreen);
                         }
                         else
                         {
-                            Console.Write(" ~ ", Color.FromArgb(rColor, gColor, bColor));
+                            Console.Write(" ~ ", Color.CadetBlue);
 
                         }
                     }
@@ -198,12 +183,12 @@ namespace BattleShip
 
                     else if (board2.ocean[row1, col].status == Square.SquareStatus.missed)
                     {
-                        Console.Write(" M ", Color.SeaGreen);
+                        Console.Write(" M ", Color.DarkGray);
 
                     }
                     else if (board2.ocean[row1, col].status == Square.SquareStatus.hit)
                     {
-                        Console.Write(" H ", Color.Yellow);
+                        Console.Write(" H ", Color.BlueViolet);
 
                     }
                     else if (board2.ocean[row1, col].status == Square.SquareStatus.sunk)
@@ -220,9 +205,9 @@ namespace BattleShip
 
         public void PrintPlayerHeader( string player1Name, string player2Name)
         {
-            Console.Write("              ");
+            Console.Write("                 ");
             Console.Write($"{player1Name}", Color.Red);
-            Console.Write("                  ");
+            Console.Write("                 ");
             Console.Write("                  ");
             Console.Write($"{player2Name}\n", Color.Red);
         }

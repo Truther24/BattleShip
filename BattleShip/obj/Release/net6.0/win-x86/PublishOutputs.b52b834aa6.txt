@@ -1,0 +1,2 @@
+C:\Users\alex\Desktop\projects\battleship-oop-csharp-Truther24\BattleShip\BattleShip.pdb
+C:\Users\alex\Desktop\projects\battleship-oop-csharp-Truther24\BattleShip\BattleShip.exe
