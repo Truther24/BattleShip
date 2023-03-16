@@ -1,6 +1,6 @@
-bin/
+BattleShip/bin/
 
-obj/
+BattleShip/obj/
 
 
-.vs/
+BattleShip/.vs/
