@@ -25,24 +25,7 @@ namespace BattleShip
                 i = rnd.Next(0, Enum.GetValues(typeof(ShipType)).Length);
             }
             PositionOfShip = new();
-            /* var values = Enum.GetValues(typeof(ShipType)).Cast<ShipType>().ToList();*/
-            /*this.type = values[indexOfEnum];*/
-            /*if (values[indexOfEnum] == ShipType.Carrier)
-            {
-                this.length = 5;
-            }
-            if (values[indexOfEnum] == ShipType.Battleship)
-            {
-                this.length = 4;
-            }
-            if (values[indexOfEnum] == ShipType.Cruiser || values[indexOfEnum] == ShipType.Submarine)
-            {
-                this.length = 3;
-            }
-            if (values[indexOfEnum] == ShipType.Destroyer)
-            {
-                this.length = 2;
-            }*/
+            
             this.length = rnd.Next(2,6);
             this.type = (ShipType)i;
 
