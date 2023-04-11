@@ -2,6 +2,8 @@
 
 BattleShip is an iteration of the tabletop game Battleship, where players anonymously place ships of various sizes on their own ocean grid and take turns trying to guess where the enemy player placed their ships by shooting at a coordinate on the grid. BattleShip is the first C# project that was built following OOP and SOLID principles from the very start, throughout its completion.
 
+<img src=https://github.com/Truther24/BattleShip/blob/development/battleship1.png class="img-class">
+
 # Getting Started
 
 To get started with this project, simply clone or download the repository and open the solution file in Visual Studio (or another IDE of your choice). You can then build and run the project from within the IDE.
@@ -10,6 +12,8 @@ Alternatively, you can navigate to the bin/Debug folder and run the Battleship.e
 # Gameplay
 
 The game is played on a 10x10(or whatever you want,depends on your input) grid, with each player placing their ships on the board before taking turns to guess the location of their opponent's ships. The first player to sink all of their opponent's ships wins the game.
+
+<img src=https://github.com/Truther24/BattleShip/blob/development/battleship2.png class="img-class">
 
 # Project Structure
 
